@@ -116,6 +116,7 @@ module EmailSpec
           matcher.failure_message = "expected the subject to match #{expected.inspect}, but did not.  Actual subject was: #{given_subject.inspect}"
           matcher.negative_failure_message = "expected the subject not to match #{expected.inspect} but #{given_subject.inspect} does match it."
 
+          expected = Regexp.new(Regexp.escape(expected.source))
           !!(given_subject =~ expected)
         end
       end

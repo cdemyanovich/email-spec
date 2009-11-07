@@ -139,6 +139,12 @@ describe EmailSpec::Matchers do
         have_subject(/The Subject/).should match(email)
         have_subject(/foo/).should_not match(email)
       end
+      
+      it "should match when the subject matches regexp and contains regexp characters" do
+        email = mock_email(:subject => '[ANN] -- The Subject --')
+
+        have_subject(/[ANN] -- The Subject --/).should match(email)
+      end
 
       it "should have a helpful description" do
         matcher = have_subject(/foo/)
